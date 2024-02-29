@@ -4,7 +4,6 @@ import shutil
 import logging
 import yaml
 import sys
-import os
 import torch
 import numpy as np
 import os
@@ -16,7 +15,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
-from runners.image_editing_with_simpool import Diffusion
+from runners.statistical_translation import Diffusion
 
 torch.set_printoptions(sci_mode=False)
 

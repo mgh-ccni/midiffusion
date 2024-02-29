@@ -1,6 +1,6 @@
 data:
     dataset: "MRI"
-    image_size: 128 # 256
+    image_size: 128 
     channels: 1
     logit_transform: false
     uniform_dequantization: false
@@ -35,7 +35,7 @@ diffusion:
 training:
     batch_size: 4
     n_epochs: 1000
-    n_iters: 300000 #5000000
+    n_iters: 300000
     snapshot_freq: 20000
     validation_freq: 2000
 
@@ -46,7 +46,7 @@ sampling:
 optim:
     weight_decay: 0.000
     optimizer: "Adam"
-    lr: 0.0003 #0.0002
+    lr: 0.0003 
     beta1: 0.9
     amsgrad: false
     eps: 0.00000001

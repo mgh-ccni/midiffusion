@@ -1,14 +1,19 @@
 
-# midiffusion
+# MIDiffusion
+PyTorch implementation of Mutual Information Guided Diffusion for Zero-shot Cross-modality Medical Image Translation
 
-`midiffusion` is a comprehensive framework designed for experimenting with diffusion models. It provides a modular architecture for training, sampling, and evaluating diffusion models on various datasets.
+`midiffusion` is a framework designed for zero-shot learning cross modality medical image translation based on diffusion models.
 
-## Features
+Zihao Wang, Yingyu Yang, Yuzhou Chen, Tingting Yuan, Maxime Sermesant, Hervé Delingette, Ona Wu
 
-- **Flexible Configuration**: Customize experiments with a comprehensive set of configuration files.
-- **Diverse Datasets Support**: Integrated support for multiple datasets, facilitating easy experimentation.
-- **Modular Design**: Separation of concerns between model definitions, data processing, and training routines.
-- **Extensible**: Easily add new models, datasets, and sampling methods.
+| Harvard | Temple | Univ. Göttingen | Inria |
+
+## Overview
+Utilizing tools for multi-modal data management offers advantages and challenges. In medical imaging, tools exist for segmenting images in modalities like 3D T1-weighted MRI, but are limited for others like Proton Density-weighted MRI. Using T1w segmentation tools on PDw images could be more efficient than seeking PDw-specific tools. A solution is zero-shot cross-modality image translation, using a diffusion model based on statistical homogeneity to bridge modalities. This approach, illustrated in our model (Locale-based Mutual Information), enables unsupervised zero-shot translation for effective cross-modality segmentation.
+
+Schematic diagram shows the LMI-guided diffusion for zero-shot cross-modal segmentation. The blue and orange contours are source and target distributions. The blue dot in the orange contour represents the target datapoint of the source datapoint (orange dot in the blue contour) in the source distribution. LMIDiffusion uses explicit statistical features (LMI) to navigate the next step (yellow dot), providing continuous guidance (yellow dot) from start to finish. In the end, the translated image can be segmented using arbitrary segmentation methods that were trained only on the target modality.
+
+![Caption.](./others/condition_ablation.png)
 
 ## Installation
 
@@ -62,10 +67,11 @@ python test.py
 - `runners/`: Scripts for different stages of the experiment lifecycle.
 - `utils/`: Utility functions and helpers.
 
-## Contributing
+## References
 
-Contributions to `midiffusion` are welcome! Please follow the standard fork and pull request workflow. If you plan to propose a major change, please discuss it in an issue first.
+This implementation is based on / inspired by:
+https://github.com/ermongroup/ddim
+https://github.com/ermongroup/SDEdit
+https://github.com/ermongroup/ncsnv2
+https://github.com/pesser/pytorch_diffusion
 
-## License
-
-Specify your project's license here.

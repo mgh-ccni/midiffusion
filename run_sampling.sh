@@ -1,3 +1,4 @@
+# /bin/bash
 source activate midiffusion
 export CUDA_VISIBLE_DEVICES=2
 

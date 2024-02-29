@@ -1,17 +1,5 @@
-import os
-import numpy as np 
-
 import torch
 import torch.nn as nn
-
-import skimage.io
-import matplotlib.pyplot as plt
-
-from PIL import Image
-from torchvision import transforms
-
-from sklearn.metrics import normalized_mutual_info_score
-
 
 class MutualInformation(nn.Module):
 

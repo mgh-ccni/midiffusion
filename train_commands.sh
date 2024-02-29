@@ -1,6 +1,6 @@
+# /bin/bash
 source activate midifusion
 export CUDA_VISIBLE_DEVICES=0,1,2,3
-
 
 python main.py --use_unet --config ./configs/CuRIOUS_FLAIR_T1.yml --gpu_id 0  --seed 1234 --comment "" --verbose info --image_folder images  --exp CuRIOUST1 --doc doc --train_path_a /CuRIOUS/imagesTr_slices/train/T1 --train_path_b /CuRIOUS/imagesTr_slices/train/T1
 
