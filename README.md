@@ -2,7 +2,7 @@
 # MIDiffusion
 PyTorch implementation of Mutual Information Guided Diffusion for Zero-shot Cross-modality Medical Image Translation
 
-`midiffusion` is a framework designed for zero-shot learning cross modality medical image translation based on diffusion models.
+`MIDiffusion` is a framework designed for zero-shot learning cross modality medical image translation based on diffusion models.
 
 Zihao Wang, Yingyu Yang, Yuzhou Chen, Tingting Yuan, Maxime Sermesant, Hervé Delingette, Ona Wu
 
@@ -43,20 +43,37 @@ To start a training session, you can use the provided shell scripts:
 For training with specific settings, modify the `train_commands.sh` script or run `main.py` with custom arguments.
 
 ### Sampling
-
+#### Command Line Usage for run_sampling
 To generate samples from a trained model:
 
 ```bash
 ./run_sampling.sh
 ```
 
-### Testing
-
-To evaluate a model or perform tests:
+The following command initiates a sampling process using the `Sampling.py` script in `run_sampling.sh`, demonstrating its usage with a comprehensive set of arguments for a specific task:
 
 ```bash
-python test.py
+python Sampling.py --use_unet --config ./configs/IXI.yml --seed 1234 --comment "" --exp CuRIOUST1_IXIPD/ --train_path_a /CuRIOUS/imagesTr_slices/test/T1 --train_path_b /CuRIOUS/imagesTr_slices/test/T2 --verbose info --image_folder images_level500 --doc doc --sample --use_pretrained --fid --sample_step 3 --t 1000
 ```
+
+### Argument Breakdown
+
+- `--use_unet`: Utilizes a U-Net architecture for the model. U-Net is widely used for image segmentation tasks.
+- `--config ./configs/IXI.yml`: Path to the configuration file containing experiment parameters.
+- `--seed 1234`: Sets the random seed to `1234` for reproducible results.
+- `--comment " "`: Allows for an optional comment about the experiment. In this case, it is left empty.
+- `--exp CuRIOUST1_IXIPD/`: Designates the directory for saving experiment-related data.
+- `--train_path_a /CuRIOUS/imagesTr_slices/test/T1`: Specifies the path to the training set for modality A.
+- `--train_path_b /CuRIOUS/imagesTr_slices/test/T2`: Specifies the path to the training set for modality B.
+- `--verbose info`: Sets the verbosity level to `info` for logging information.
+- `--image_folder images_level500`: The directory where sampled images will be stored.
+- `--doc doc`: Names the log folder for documentation purposes, aiding in distinguishing between experiment runs.
+- `--sample`: Activates the model's sampling mode to generate samples.
+- `--use_pretrained`: Indicates that sampling will utilize a pretrained model.
+- `--fid`: Triggers the calculation of the Frechet Inception Distance (FID) for evaluating the quality of the generated images.
+- `--sample_step 3`: Defines the total number of steps in the sampling process.
+- `--t 1000`: Specifies the noise scale used in sampling, affecting the variance of the generated samples.
+
 
 ## Project Structure
 
@@ -70,8 +87,12 @@ python test.py
 ## References
 
 This implementation is based on / inspired by:
+
 https://github.com/ermongroup/ddim
+
 https://github.com/ermongroup/SDEdit
+
 https://github.com/ermongroup/ncsnv2
+
 https://github.com/pesser/pytorch_diffusion
 
