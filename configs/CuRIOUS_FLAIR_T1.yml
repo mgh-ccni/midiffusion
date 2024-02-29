@@ -23,7 +23,7 @@ model:
     ema: True
     resamp_with_conv: True
     geo_patch_sz: 3
-    MIsigma: 2.1 # MI(FL,FL)
+    MIsigma: 2
     MInormalization: False
 
 diffusion:
