@@ -15,6 +15,16 @@ Schematic diagram shows the LMI-guided diffusion for zero-shot cross-modal segme
 
 ![Caption.](./others/condition_ablation.png)
 
+## Project Structure
+
+- `configs/`: Configuration files for training and evaluation.
+- `datasets/`: Place your dataset files here or scripts to download datasets.
+- `functions/`: Core functionalities including model components and utilities.
+- `models/`: Definitions of diffusion models and architectures.
+- `runners/`: Scripts for different stages of the experiment lifecycle.
+- `utils/`: Utility functions and helpers.
+
+
 ## Installation
 
 1. Clone the repository:
@@ -39,6 +49,26 @@ To start a training session, you can use the provided shell scripts:
 ```bash
 ./train_commands.sh
 ```
+
+The command line for training with `main.py` script in `train_commands.sh` includes several options that allow you to customize the training process. Here's a detailed explanation of each argument used in the command:
+
+```bash
+python main.py --use_unet --config ./configs/CuRIOUS_FLAIR_T1.yml --gpu_id 0 --seed 1234 --comment "" --verbose info --image_folder images --exp CuRIOUST1 --doc doc --train_path_a /CuRIOUS/imagesTr_slices/train/T1 --train_path_b /CuRIOUS/imagesTr_slices/train/T1
+```
+
+
+- `--use_unet`: This flag indicates that the U-Net architecture should be used for the model. U-Net is particularly popular for medical image segmentation tasks due to its effectiveness in handling such data.
+- `--config ./configs/CuRIOUS_FLAIR_T1.yml`: Specifies the path to the configuration file that contains detailed settings for the training process. This file is essential for setting up the experiment parameters.
+- `--gpu_id 0`: Assigns the ID of the GPU to be used for training. This is important for systems with multiple GPUs.
+- `--seed 1234`: Sets the random seed to `1234` to ensure reproducibility of the results. This is crucial for scientific experiments where reproducibility is key.
+- `--comment ""`: Allows for an optional comment string to be associated with the training run. In this case, it's left empty.
+- `--verbose info`: Sets the verbosity level of the output to `info`. This controls how much information is printed out during the training process. Other levels include `debug`, `warning`, and `critical`.
+- `--image_folder images`: Designates the folder where output images (e.g., training progress snapshots) will be saved.
+- `--exp CuRIOUST1`: Specifies the name of the experiment. This can be useful for organizing and identifying different training runs.
+- `--doc doc`: Provides a string for documentation purposes, which will be used as the name of the log folder. This helps in keeping track of different experiments and their outcomes.
+- `--train_path_a /CuRIOUS/imagesTr_slices/train/T1`: Specifies the path to the training set for modality A. In this context, it points to the location of T1-weighted MRI slices used for training.
+- `--train_path_b /CuRIOUS/imagesTr_slices/train/T1`: Specifies the path to the training set for modality B. Even though it points to the same T1-weighted MRI slices as modality A in this example, typically, this could be used to specify a different modality or data set for comparative training or multi-modal training scenarios.
+
 
 For training with specific settings, modify the `train_commands.sh` script or run `main.py` with custom arguments.
 
@@ -73,16 +103,6 @@ python Sampling.py --use_unet --config ./configs/IXI.yml --seed 1234 --comment "
 - `--fid`: Triggers the calculation of the Frechet Inception Distance (FID) for evaluating the quality of the generated images.
 - `--sample_step 3`: Defines the total number of steps in the sampling process.
 - `--t 1000`: Specifies the noise scale used in sampling, affecting the variance of the generated samples.
-
-
-## Project Structure
-
-- `configs/`: Configuration files for training and evaluation.
-- `datasets/`: Place your dataset files here or scripts to download datasets.
-- `functions/`: Core functionalities including model components and utilities.
-- `models/`: Definitions of diffusion models and architectures.
-- `runners/`: Scripts for different stages of the experiment lifecycle.
-- `utils/`: Utility functions and helpers.
 
 ## References
 
